@@ -1,8 +1,8 @@
 package middleware
 
 import (
-	"gin_example/model"
-	"gin_example/serializer"
+	"giligili/model"
+	"giligili/serializer"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"

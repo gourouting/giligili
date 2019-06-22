@@ -1,8 +1,8 @@
 package conf
 
 import (
-	"gin_example/cache"
-	"gin_example/model"
+	"giligili/cache"
+	"giligili/model"
 	"os"
 
 	"github.com/joho/godotenv"
