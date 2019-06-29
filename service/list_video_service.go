@@ -7,13 +7,16 @@ import (
 
 // ListVideoService 视频列表服务
 type ListVideoService struct {
+	Limit int `form:"limit"`
+	Start int `form:"start"`
 }
 
 // List 视频列表
 func (service *ListVideoService) List() serializer.Response {
 	var videos []model.Video
 
-	err := model.DB.Find(&videos).Error
+	err := model.DB.Find(&videos).
+		Limit(service.Limit).Offset(service.Start).Error
 	if err != nil {
 		return serializer.Response{
 			Status: 50000,
