@@ -52,11 +52,12 @@ GIN_MODE="debug"
 
 ## Go 依赖
 
-本项目使用 `govendor` 管理依赖。
+本项目使用 `go mod` 管理依赖。
 
 ```shell
-go get -u github.com/kardianos/govendor
-govendor init
+export GOPROXY=https://goproxy.io
+go mod tidy
+go mod vendor
 ```
 
 ## 运行
