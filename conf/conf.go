@@ -3,6 +3,7 @@ package conf
 import (
 	"giligili/cache"
 	"giligili/model"
+	"giligili/tasks"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -21,4 +22,7 @@ func Init() {
 	// 连接数据库
 	model.Database(os.Getenv("MYSQL_DSN"))
 	cache.Redis()
+
+	// 启动定时任务
+	tasks.CronJob()
 }

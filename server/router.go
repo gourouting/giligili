@@ -37,12 +37,15 @@ func NewRouter() *gin.Engine {
 			authed.DELETE("user/logout", api.UserLogout)
 		}
 
+		// 视频操作
 		v1.POST("videos", api.CreateVideo)
 		v1.GET("video/:id", api.ShowVideo)
 		v1.GET("videos", api.ListVideo)
 		v1.PUT("video/:id", api.UpdateVideo)
 		v1.DELETE("video/:id", api.DeleteVideo)
-
+		// 排行榜
+		v1.GET("rank/daily", api.DailyRank)
+		// 其他
 		v1.POST("upload/token", api.UploadToken)
 	}
 	return r
