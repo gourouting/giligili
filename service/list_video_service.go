@@ -15,7 +15,7 @@ type ListVideoService struct {
 func (service *ListVideoService) List() serializer.Response {
 	var videos []model.Video
 
-	err := model.DBLimit(service.Limit).Offset(service.Start).Find(&videos).Error
+	err := model.DB.Limit(service.Limit).Offset(service.Start).Find(&videos).Error
 	if err != nil {
 		return serializer.Response{
 			Status: 50000,
