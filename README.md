@@ -47,6 +47,10 @@ REDIS_ADDR="127.0.0.1:6379" # Redis端口和地址
 REDIS_PW="" # Redis连接密码
 REDIS_DB="" # Redis库从0到10
 SESSION_SECRE="" # Seesion密钥，必须设置而且不要泄露
+OSS_ACCESS_KEY_ID="blablabla"
+OSS_ACCESS_KEY_SECRET="blablabla"
+OSS_END_POINT="blablabla"
+OSS_BUCKET="blablabla"
 GIN_MODE="debug"
 ```
 
