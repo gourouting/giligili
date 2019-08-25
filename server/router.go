@@ -29,7 +29,7 @@ func NewRouter() *gin.Engine {
 		v1.POST("user/login", api.UserLogin)
 
 		// 需要登录保护的
-		authed := r.Group("/")
+		authed := v1.Group("/")
 		authed.Use(middleware.AuthRequired())
 		{
 			// User Routing
