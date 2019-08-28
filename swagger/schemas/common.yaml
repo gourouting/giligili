@@ -1,0 +1,12 @@
+Error:
+  required:
+    - code
+    - message
+  properties:
+    code:
+      type: integer
+      format: int32
+      description: 状态码，0为成功，小于0为失败
+    result:
+      type: string
+      description: 错误描述

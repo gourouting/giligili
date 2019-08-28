@@ -1,0 +1,317 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "G站项目接口文档"
+  },
+  "servers": [
+    {
+      "url": "https://www.gourouting.com/"
+    }
+  ],
+  "paths": {
+    "/api/v1/videos": {
+      "get": {
+        "security": [
+          {
+            "wpsSid": []
+          }
+        ],
+        "summary": "视频列表",
+        "operationId": "listVideos",
+        "tags": [
+          "video"
+        ],
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "从第几个开始",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "每页数量",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回视频列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "状态码，0为成功，小于0为失败"
+                    },
+                    "result": {
+                      "type": "string",
+                      "description": "错误描述"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/schemas/Video"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "security": [
+          {
+            "wpsSid": []
+          }
+        ],
+        "summary": "创建视频",
+        "operationId": "createVideo",
+        "tags": [
+          "video"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/schemas/VideoForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "返回视频列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "状态码，0为成功，小于0为失败"
+                    },
+                    "result": {
+                      "type": "string",
+                      "description": "错误描述"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/schemas/Video"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/video/{id}": {
+      "get": {
+        "security": [
+          {
+            "wpsSid": []
+          }
+        ],
+        "summary": "视频详情",
+        "operationId": "showVideo",
+        "tags": [
+          "video"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "视频ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "返回视频列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "状态码，0为成功，小于0为失败"
+                    },
+                    "result": {
+                      "type": "string",
+                      "description": "错误描述"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/schemas/Video"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "security": [
+          {
+            "wpsSid": []
+          }
+        ],
+        "summary": "更新视频",
+        "operationId": "updateVideo",
+        "tags": [
+          "video"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "视频ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/schemas/VideoForm"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "返回视频列表",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "integer",
+                      "format": "int32",
+                      "description": "状态码，0为成功，小于0为失败"
+                    },
+                    "result": {
+                      "type": "string",
+                      "description": "错误描述"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/schemas/Video"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "schemas": {
+    "Error": {
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32",
+          "description": "状态码，0为成功，小于0为失败"
+        },
+        "result": {
+          "type": "string",
+          "description": "错误描述"
+        }
+      }
+    },
+    "Video": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "description": "视频ID"
+        },
+        "title": {
+          "type": "string",
+          "description": "标题"
+        },
+        "info": {
+          "type": "string",
+          "description": "简介"
+        },
+        "url": {
+          "type": "string",
+          "description": "视频链接"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "封面链接"
+        },
+        "view": {
+          "type": "integer",
+          "description": "点击数"
+        },
+        "created_at": {
+          "type": "integer",
+          "description": "创建时间时间戳"
+        }
+      }
+    },
+    "VideoForm": {
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "标题"
+        },
+        "info": {
+          "type": "string",
+          "description": "简介"
+        },
+        "url": {
+          "type": "string",
+          "description": "视频链接"
+        },
+        "avatar": {
+          "type": "string",
+          "description": "封面链接"
+        }
+      }
+    }
+  }
+}

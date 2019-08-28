@@ -1,0 +1,73 @@
+get:
+  security:
+    - wpsSid: []
+  summary: 视频列表
+  operationId: listVideos
+  tags:
+    - video
+  parameters:
+    - name: start
+      in: query
+      description: 从第几个开始
+      required: false
+      schema:
+        type: integer
+        format: int32
+    - name: limit
+      in: query
+      description: 每页数量
+      required: false
+      schema:
+        type: integer
+        format: int32
+  responses:
+    '200':
+      description: 返回视频列表
+      content:
+        application/json:    
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: 状态码，0为成功，小于0为失败
+              result:
+                type: string
+                description: 错误描述
+              data:
+                type: array
+                items:
+                  $ref: "#/schemas/Video"
+post:
+  security:
+    - wpsSid: []
+  summary: 创建视频
+  operationId: createVideo
+  tags:
+    - video
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/VideoForm"
+  responses:
+    '200':
+      description: 返回视频列表
+      content:
+        application/json:    
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: 状态码，0为成功，小于0为失败
+              result:
+                type: string
+                description: 错误描述
+              data:
+                type: array
+                items:
+                  $ref: "#/schemas/Video"

@@ -1,0 +1,37 @@
+Video:
+  properties:
+    id:
+      type: integer
+      description: 视频ID
+    title:
+      type: string
+      description: 标题
+    info:
+      type: string
+      description: 简介
+    url:
+      type: string
+      description: 视频链接
+    avatar:
+      type: string
+      description: 封面链接
+    view:
+      type: integer
+      description: 点击数
+    created_at:
+      type: integer
+      description: 创建时间时间戳
+VideoForm:
+  properties:
+    title:
+      type: string
+      description: 标题
+    info:
+      type: string
+      description: 简介
+    url:
+      type: string
+      description: 视频链接
+    avatar:
+      type: string
+      description: 封面链接

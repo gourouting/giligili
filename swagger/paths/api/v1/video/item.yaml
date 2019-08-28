@@ -1,0 +1,72 @@
+get:
+  security:
+    - wpsSid: []
+  summary: 视频详情
+  operationId: showVideo
+  tags:
+    - video
+  parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      description: 视频ID
+  responses:
+    '200':
+      description: 返回视频列表
+      content:
+        application/json:    
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: 状态码，0为成功，小于0为失败
+              result:
+                type: string
+                description: 错误描述
+              data:
+                type: array
+                items:
+                  $ref: "#/schemas/Video"
+put:
+  security:
+    - wpsSid: []
+  summary: 更新视频
+  operationId: updateVideo
+  tags:
+    - video
+  parameters:
+    - in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      description: 视频ID
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "#/schemas/VideoForm"
+  responses:
+    '200':
+      description: 返回视频列表
+      content:
+        application/json:    
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+                description: 状态码，0为成功，小于0为失败
+              result:
+                type: string
+                description: 错误描述
+              data:
+                type: array
+                items:
+                  $ref: "#/schemas/Video"

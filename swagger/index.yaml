@@ -1,0 +1,15 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: G站项目接口文档
+servers:
+  - url: https://www.gourouting.com/
+paths:
+  /api/v1/videos:
+    $ref: /paths/api/v1/video/list.yaml
+  /api/v1/video/{id}:
+    $ref: /paths/api/v1/video/item.yaml
+schemas:
+  $ref#Error: /schemas/common.yaml
+  $ref#Video: /schemas/video.yaml
+  $ref#VideoForm: /schemas/video.yaml
