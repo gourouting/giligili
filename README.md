@@ -1,4 +1,4 @@
-# https://www.gourouting.com/#/
+# G站: https://www.gourouting.com
 
 欢迎来到[G站](www.gourouting.com)，本站是[Singo](https://github.com/bydmm/singo)框架的学习项目。
 
