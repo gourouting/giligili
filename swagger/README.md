@@ -12,5 +12,6 @@ https://www.npmjs.com/package/swagger-merger
 
 ```bash
 npm install -g swagger-merger
+cd swagger
 swagger-merger -i index.yaml -o swagger.json
 ```

@@ -48,5 +48,11 @@ func NewRouter() *gin.Engine {
 		// 其他
 		v1.POST("upload/token", api.UploadToken)
 	}
+
+	// swagger文档
+	// 游览器打开 http://localhost:3000/swagger/index.html
+	r.StaticFile("/swagger.json", "./swagger/swagger.json")
+	r.Static("/swagger", "./swagger/dist")
+
 	return r
 }

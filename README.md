@@ -92,3 +92,9 @@ go run main.go
 使用Singo开发Web服务，用最简单的架构，实现够用的框架，服务海量用户
 
 https://github.com/bydmm/singo
+
+## 神奇的接口文档
+
+服务启动后: http://localhost:3000/swagger/index.html
+
+接口文档位于项目swagger目录下。请阅读目录内的文档
