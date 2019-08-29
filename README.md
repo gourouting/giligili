@@ -40,7 +40,7 @@ Go Module会让你未来面对各种依赖问题迎刃而解，所以学习和�
 
 你需要复制项目根目录下的.env.example文件，然后建立.env文件，然后把内容帖进去
 
-```
+```ini
 MYSQL_DSN="user:password@tcp(ip:port)/dbname?charset=utf8&parseTime=True&loc=Local" # mysql连接串
 REDIS_ADDR="127.0.0.1:6379" # redis地址
 REDIS_PW="" # redis密码(可以不填)
