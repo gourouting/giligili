@@ -1,88 +1,94 @@
-# Singo
+# 狗肉停.com
 
-Singo: Simple Single Golang Web Service
+欢迎来到[G站](www.gourouting.com)，本站是[Singo](https://github.com/bydmm/singo)框架的学习项目。
 
-go-crud正式改名为Singo!
+## 项目地址
+
+https://github.com/bydmm/giligili
+
+## 项目目的
+
+本项目代码并不是为了真正经营一个视频站项目而编写。
+
+本项目的主要目的是为了方便大家学习怎么用Golang编写前后端分离的纯后端项目
+
+## 重要: 如何运行
+
+#### 1.学习Go Module管理依赖
+
+本项目已经迁移到使用Go Module来管理依赖,和视频的开始有所不同! 所以按照视频的方法是跑不起来的。
+
+请参考本视频了解什么是Go Module：https://www.bilibili.com/video/av63052644/
+
+Go Module会让你未来面对各种依赖问题迎刃而解，所以学习和使用对你是非常有价值的
+
+#### 2.配置数据库
+
+本项目依赖于任何网站项目都会使用的Mysql和Redis，所以你需要提前安装和启动这两个服务。
+
+如果你是windows用户，可以快速的解决mysql和redis安装的问题,通过: PHPStudy。
+
+本视频用几分钟教会你如何使用PHPStudy，https://www.bilibili.com/video/av64485001/
+
+如果你是OSX或者linux的硬核用户，相必启动Mysql和Redis对你不是问题😁
+
+#### 3.配置环境变量
+
+> 设置环境变量，你可以参考singo框架的文档: https://singo.gourouting.com/quick-guide/set-env.html
+
+由于每个用户的电脑环境不同，所以我们通过环境变量来改变着些容易变化的属性。
+
+你需要复制项目根目录下的.env.example文件，然后建立.env文件，然后把内容帖进去
+
+```
+MYSQL_DSN="user:password@tcp(ip:port)/dbname?charset=utf8&parseTime=True&loc=Local" # mysql连接串
+REDIS_ADDR="127.0.0.1:6379" # redis地址
+REDIS_PW="" # redis密码(可以不填)
+REDIS_DB="" # redis数据库(可以不填)
+SESSION_SECRET="youneedtoset" # session密钥，开发环境可以不用改
+GIN_MODE="debug" # 服务状态，开发环境不用改
+# 下面是OSS对象存储的参数
+# 参考本视频来管理上传文件：https://www.bilibili.com/video/av60189734/
+OSS_END_POINT="oss-cn-hongkong.aliyuncs.com" # OSS端点
+OSS_ACCESS_KEY_ID="xxx"
+OSS_ACCESS_KEY_SECRET="qqqq"
+OSS_BUCKET="lalalal"
+
+```
+
+#### Windows CMD 系统启动指令
+
+```bash
+set GOPROXY=https://mirrors.aliyun.com/goproxy/
+set GO111MODULE=on
+
+go run main.go
+```
+
+#### Windows Powershell 系统启动指令
+
+```bash
+$env:GOPROXY = 'https://mirrors.aliyun.com/goproxy/'
+$env:GO111MODULE = 'on'
+
+go run main.go
+```
+
+#### linux / OSX 系统启动
+
+```bash
+export GOPROXY=https://mirrors.aliyun.com/goproxy/
+export GO111MODULE=on
+
+go run main.go
+```
+
+## 视频实况系列教程
+
+[让我们写个G站吧！Golang全栈编程实况](https://space.bilibili.com/10/channel/detail?cid=78794)
+
+## Singo框架
 
 使用Singo开发Web服务，用最简单的架构，实现够用的框架，服务海量用户
 
 https://github.com/bydmm/singo
-
-## 视频实况教程
-
-[让我们写个G站吧！Golang全栈编程实况](https://space.bilibili.com/10/channel/detail?cid=78794)
-
-## 使用Singo开发的项目实例
-
-https://github.com/bydmm/giligili
-
-## 目的
-
-本项目采用了一系列Golang中比较流行的组件，可以以本项目为基础快速搭建Restful Web API
-
-## 特色
-
-本项目已经整合了许多开发API所必要的组件：
-
-1. [Gin](https://github.com/gin-gonic/gin): 轻量级Web框架，自称路由速度是golang最快的 
-2. [GORM](http://gorm.io/docs/index.html): ORM工具。本项目需要配合Mysql使用 
-3. [Gin-Session](https://github.com/gin-contrib/sessions): Gin框架提供的Session操作工具
-4. [Go-Redis](https://github.com/go-redis/redis): Golang Redis客户端
-5. [godotenv](https://github.com/joho/godotenv): 开发环境下的环境变量工具，方便使用环境变量
-6. [Gin-Cors](https://github.com/gin-contrib/cors): Gin框架提供的跨域中间件
-7. 自行实现了国际化i18n的一些基本功能
-8. 本项目是使用基于cookie实现的session来保存登录状态的，如果需要可以自行修改为token验证
-
-本项目已经预先实现了一些常用的代码方便参考和复用:
-
-1. 创建了用户模型
-2. 实现了```/api/v1/user/register```用户注册接口
-3. 实现了```/api/v1/user/login```用户登录接口
-4. 实现了```/api/v1/user/me```用户资料接口(需要登录后获取session)
-5. 实现了```/api/v1/user/logout```用户登出接口(需要登录后获取session)
-
-本项目已经预先创建了一系列文件夹划分出下列模块:
-
-1. api文件夹就是MVC框架的controller，负责协调各部件完成任务
-2. model文件夹负责存储数据库模型和数据库操作相关的代码
-3. service负责处理比较复杂的业务，把业务代码模型化可以有效提高业务代码的质量（比如用户注册，充值，下单等）
-4. serializer储存通用的json模型，把model得到的数据库模型转换成api需要的json对象
-5. cache负责redis缓存相关的代码
-6. auth权限控制文件夹
-7. util一些通用的小工具
-8. conf放一些静态存放的配置文件，其中locales内放置翻译相关的配置文件
-
-## Godotenv
-
-项目在启动的时候依赖以下环境变量，但是在也可以在项目根目录创建.env文件设置环境变量便于使用(建议开发环境使用)
-
-```shell
-MYSQL_DSN="db_user:db_password@/db_name?charset=utf8&parseTime=True&loc=Local" # Mysql连接地址
-REDIS_ADDR="127.0.0.1:6379" # Redis端口和地址
-REDIS_PW="" # Redis连接密码
-REDIS_DB="" # Redis库从0到10
-SESSION_SECRE="" # Seesion密钥，必须设置而且不要泄露
-GIN_MODE="debug"
-OSS_END_POINT="oss-cn-xxx.aliyuncs.com" # OSS端点
-OSS_ACCESS_KEY_ID="" # 阿里云 OSS KEY
-OSS_ACCESS_KEY_SECRET="" # 阿里云 OSS SECRET
-OSS_BUCKET="" # OSS 储存桶
-```
-
-## Go Mod
-
-本项目使用[Go Mod](https://github.com/golang/go/wiki/Modules)管理依赖。
-
-```shell
-go mod init go-crud
-export GOPROXY=http://mirrors.aliyun.com/goproxy/
-go run main.go // 自动安装
-```
-
-## 运行
-
-```shell
-go run main.go
-```
-
-项目运行后启动在3000端口（可以修改，参考gin文档)
