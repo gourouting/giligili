@@ -1,0 +1,15 @@
+from fabric import Connection, task
+
+@task
+def deploy(c):
+    with Connection('root@x.x.x.x') as c:
+        c.run("rm -rf giligili")
+        c.run("git clone https://github.com/bydmm/giligili.git", pty=True)
+        c.put("docker-compose.yml", "giligili/docker-compose.yml")
+        c.run("cd giligili && docker-compose build && docker-compose rm -fsv && docker-compose up --build -d", pty=True)
+        c.run("sleep 15 && docker logs -f gili-api")
+
+# doc http://docs.fabfile.org/en/2.5/getting-started.html
+# apt install python-pip
+# pip install fabric -i http://mirrors.aliyun.com/pypi/simple/
+# fab deploy

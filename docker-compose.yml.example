@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+  gili-api:
+    build: ./
+    image: gili-api:latest
+    container_name: gili-api
+    restart: always
+    environment:
+      MYSQL_DSN: "root:QBwNk5GN5xfB@tcp(mysql:3306)/giligili?charset=utf8mb4,utf8&parseTime=True&loc=Local"
+      REDIS_ADDR: "redis:6379"
+      REDIS_DB: "0"
+      SESSION_SECRET: "rBaXcd1PPrC1"
+      GIN_MODE: "release"
+    ports:
+      - 3002:3000
+    depends_on:
+      - redis
+      - mysql
+  mysql:
+    container_name: mysql
+    image: mysql:5.6
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: QBwNk5GN5xfB
+      MYSQL_DATABASE: giligili
+    ports:
+      - "3306:3306"
+  redis:
+    container_name: redis
+    image: redis
+    restart: always
+    ports:
+      - "6379:6379"
