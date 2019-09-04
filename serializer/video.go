@@ -19,7 +19,7 @@ func BuildVideo(item model.Video) Video {
 		ID:        item.ID,
 		Title:     item.Title,
 		Info:      item.Info,
-		URL:       item.URL,
+		URL:       item.VideoURL(),
 		Avatar:    item.AvatarURL(),
 		View:      item.View(),
 		CreatedAt: item.CreatedAt.Unix(),

@@ -26,6 +26,14 @@ func (video *Video) AvatarURL() string {
 	return signedGetURL
 }
 
+// VideoURL 视频地址
+func (video *Video) VideoURL() string {
+	client, _ := oss.New(os.Getenv("OSS_END_POINT"), os.Getenv("OSS_ACCESS_KEY_ID"), os.Getenv("OSS_ACCESS_KEY_SECRET"))
+	bucket, _ := client.Bucket(os.Getenv("OSS_BUCKET"))
+	signedGetURL, _ := bucket.SignURL(video.URL, oss.HTTPGet, 600)
+	return signedGetURL
+}
+
 // View 点击数
 func (video *Video) View() uint64 {
 	countStr, _ := cache.RedisClient.Get(cache.VideoViewKey(video.ID)).Result()
